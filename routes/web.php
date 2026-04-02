@@ -2,12 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\GuruController;
-
-Route::resource('sekolah', SekolahController::class);
-Route::resource('guru', GuruController::class);
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -20,7 +18,9 @@ Route::post('/reset-password', [PasswordController::class, 'resetPassword'])->na
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('sekolah', SekolahController::class);
+    Route::resource('guru', GuruController::class);
 });
