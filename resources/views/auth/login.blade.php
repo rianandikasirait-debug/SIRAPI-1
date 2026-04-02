@@ -240,15 +240,6 @@
                 </div>
             </form>
 
-            <!-- Info -->
-            <div style="margin-top:28px;padding-top:22px;border-top:1px solid #e2e8f0">
-                <div style="background:rgba(26,58,107,.05);border:1px solid rgba(26,58,107,.1);border-radius:12px;padding:14px">
-                    <p style="text-align:center;font-size:13px;color:#64748b;margin:0">
-                        Hubungi <strong style="color:#1a3a6b">Administrator Sekolah</strong> jika Anda mengalami masalah saat login
-                    </p>
-                </div>
-            </div>
-
             <p style="text-align:center;font-size:12px;color:#94a3b8;margin-top:20px">
                 SIRAPI &middot; Sistem Rapor Pintar &middot; {{ date('Y') }}
             </p>
