@@ -3,6 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\GuruController;
+
+Route::resource('sekolah', SekolahController::class);
+Route::resource('guru', GuruController::class);
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
