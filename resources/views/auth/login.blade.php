@@ -177,11 +177,10 @@
                 @endforeach
             </div>
         </div>
-            <div style="position:relative;z-index:10">
-                <p style="color:#475569;font-size:12px">&copy; {{ date('Y') }} SIRAPI &middot; Sistem Rapor Pintar</p>
-            </div>
+
+        <div style="position:relative;z-index:10">
+            <p style="color:#475569;font-size:12px">&copy; {{ date('Y') }} SIRAPI &middot; Sistem Rapor Pintar</p>
         </div>
-        
     </div>
 
     <!-- Right Panel - Login Form -->
