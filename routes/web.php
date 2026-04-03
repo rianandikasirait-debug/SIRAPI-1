@@ -8,7 +8,7 @@ use App\Http\Controllers\GuruController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::get('/forgot-password', [PasswordController::class, 'showForgotForm'])->name('password.request');
 Route::post('/forgot-password', [PasswordController::class, 'sendResetLink'])->name('password.email');

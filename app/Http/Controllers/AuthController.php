@@ -15,8 +15,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'username' => ['required', 'string'],
+            'password' => ['required', 'string'],
+        ], [
+            'username.required' => 'Username wajib diisi.',
+            'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
         $role = $request->input('role', 'admin');
@@ -40,7 +43,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'Username atau kata sandi tidak sesuai.',
+            'password' => 'Username atau kata sandi tidak sesuai.',
         ])->onlyInput('username');
     }
 

@@ -100,6 +100,39 @@
             font-size: 14px;
             margin-bottom: 20px;
         }
+
+        .alert-success {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #1d4ed8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .field-error {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #dc2626;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 28px 24px;
+            border: 1px solid #dbe4f0;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 18px 44px rgba(15,23,42,0.08);
+        }
+
+        @media (max-width: 1023px) {
+            .auth-card {
+                padding: 24px 20px;
+                box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex">
@@ -109,7 +142,7 @@
         <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(59,130,246,.15) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(99,102,241,.1) 0%,transparent 50%)"></div>
         <div style="position:absolute;top:0;right:0;width:288px;height:288px;border-radius:50%;background:#60a5fa;opacity:.05;transform:translate(30%,-30%)"></div>
         <div style="position:absolute;bottom:0;left:0;width:384px;height:384px;border-radius:50%;background:#818cf8;opacity:.05;transform:translate(-30%,30%)"></div>
-
+        
         <!-- Logo -->
         <div style="position:relative;z-index:10;display:flex;align-items:center;gap:12px">
             <div style="width:48px;height:48px;border-radius:12px;background:rgba(96,165,250,.2);border:1px solid rgba(96,165,250,.3);display:flex;align-items:center;justify-content:center">
@@ -122,11 +155,7 @@
         </div>
 
         <!-- Center -->
-        <div style="position:relative;z-index:10">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-                <span style="color:#60a5fa;font-size:13px;font-weight:600;letter-spacing:.08em">SMART REPORT SYSTEM</span>
-            </div>
+        <div style="position:relative;z-index:10;max-width:320px;margin-top:40px">
             <h1 style="color:white;font-weight:700;font-size:38px;line-height:1.2;margin-bottom:16px">
                 Kelola Rapor<br><span style="color:#60a5fa">Lebih Cerdas</span>
             </h1>
@@ -148,32 +177,26 @@
                 @endforeach
             </div>
         </div>
-
-        <div style="position:relative;z-index:10">
-            <p style="color:#475569;font-size:12px">&copy; {{ date('Y') }} SIRAPI &middot; Sistem Rapor Pintar</p>
+            <div style="position:relative;z-index:10">
+                <p style="color:#475569;font-size:12px">&copy; {{ date('Y') }} SIRAPI &middot; Sistem Rapor Pintar</p>
+            </div>
         </div>
+        
     </div>
 
     <!-- Right Panel - Login Form -->
     <div class="flex-1 flex items-center justify-center p-8" style="background:#f8fafc">
-        <div style="width:100%;max-width:440px">
-
-            <!-- Mobile logo -->
-            <div class="lg:hidden" style="display:none;align-items:center;gap:12px;margin-bottom:32px">
-                <div style="width:40px;height:40px;border-radius:12px;background:#1a3a6b;display:flex;align-items:center;justify-content:center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                </div>
-                <div>
-                    <p style="font-weight:700;color:#1e293b;font-size:18px">SIRAPI</p>
-                    <p style="color:#94a3b8;font-size:11px;letter-spacing:.05em">SISTEM RAPOR PINTAR</p>
-                </div>
-            </div>
+        <div class="auth-card">
 
             <!-- Header -->
             <div style="margin-bottom:28px">
                 <h2 style="font-size:28px;font-weight:700;color:#0f172a;margin-bottom:6px">Selamat Datang</h2>
                 <p style="color:#64748b;font-size:14px">Masuk ke akun Anda untuk melanjutkan</p>
             </div>
+
+            @if(session('status'))
+            <div class="alert-success">{{ session('status') }}</div>
+            @endif
 
             <!-- Errors -->
             @if($errors->any())
@@ -194,7 +217,7 @@
             </div>
 
             <!-- Form -->
-            <form method="POST" action="{{ route('login') }}" id="loginForm">
+            <form method="POST" action="{{ route('login.post') }}" id="loginForm">
                 @csrf
                 <input type="hidden" name="role" id="roleInput" value="admin">
 
@@ -205,6 +228,9 @@
                         <input type="text" name="username" id="usernameField" class="input-field"
                             placeholder="Masukkan username"
                             value="{{ old('username') }}" required autocomplete="username">
+                        @error('username')
+                        <p class="field-error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Password -->
@@ -220,6 +246,9 @@
                                 </svg>
                             </button>
                         </div>
+                        @error('password')
+                        <p class="field-error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Remember + Forgot -->

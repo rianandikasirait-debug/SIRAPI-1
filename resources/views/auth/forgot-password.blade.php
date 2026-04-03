@@ -66,6 +66,22 @@
         .back-link { display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:#64748b;text-decoration:none;margin-bottom:24px;transition:color .2s; }
         .back-link:hover { color:#1a3a6b; }
         .success-box { background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;margin-bottom:24px; }
+        .auth-card {
+            width:100%;
+            max-width:440px;
+            padding:28px 24px;
+            border:1px solid #dbe4f0;
+            border-radius:24px;
+            background:rgba(255,255,255,0.95);
+            box-shadow:0 18px 44px rgba(15,23,42,0.08);
+        }
+
+        @media (max-width: 1023px) {
+            .auth-card {
+                padding: 24px 20px;
+                box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex">
@@ -75,7 +91,7 @@
         <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(59,130,246,.15) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(99,102,241,.1) 0%,transparent 50%)"></div>
         <div style="position:absolute;top:0;right:0;width:288px;height:288px;border-radius:50%;background:#60a5fa;opacity:.05;transform:translate(30%,-30%)"></div>
         <div style="position:absolute;bottom:0;left:0;width:384px;height:384px;border-radius:50%;background:#818cf8;opacity:.05;transform:translate(-30%,30%)"></div>
-
+        
         <div style="position:relative;z-index:10;display:flex;align-items:center;gap:12px">
             <div style="width:48px;height:48px;border-radius:12px;background:rgba(96,165,250,.2);border:1px solid rgba(96,165,250,.3);display:flex;align-items:center;justify-content:center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
@@ -87,10 +103,6 @@
         </div>
 
         <div style="position:relative;z-index:10">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-                <span style="color:#60a5fa;font-size:13px;font-weight:600;letter-spacing:.08em">SMART REPORT SYSTEM</span>
-            </div>
             <h1 style="color:white;font-weight:700;font-size:38px;line-height:1.2;margin-bottom:16px">
                 Kelola Rapor<br><span style="color:#60a5fa">Lebih Cerdas</span>
             </h1>
@@ -106,7 +118,7 @@
 
     <!-- Right Panel -->
     <div class="flex-1 flex items-center justify-center p-8" style="background:#f8fafc">
-        <div style="width:100%;max-width:440px">
+        <div class="auth-card">
 
             <!-- Back link -->
             <a href="{{ route('login') }}" class="back-link">
